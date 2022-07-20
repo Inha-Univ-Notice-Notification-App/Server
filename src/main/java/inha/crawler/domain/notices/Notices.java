@@ -30,15 +30,23 @@ public class Notices {
     // 공지의 url 주소
     private String url;
 
+    // 공지가 올라온 날짜
+    private int year;
+    private int month;
+    private int day;
+
     // 즐겨찾기 여부
     private boolean star = false;
 
     @Builder
-    public Notices(String title, String page, String tag, String url){
+    public Notices(String title, String page, String tag, String url, int year, int month, int day){
         this.title = title;
         this.page = page;
         this.tag = tag;
         this.url = url;
+        this.year = year;
+        this.month = month;
+        this.day = day;
     }
 
     // 즐겨찾기 여부 변경
