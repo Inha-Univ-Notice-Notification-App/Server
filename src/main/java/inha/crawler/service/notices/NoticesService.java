@@ -58,7 +58,7 @@ public class NoticesService {
                     NoticesSaveRequestDto noticesSaveRequestDto = NoticesSaveRequestDto.builder()
                             .title(items.get(i))
                             .url(categoriesListResponseDto.getNoticeUrl() + links.get(i))
-                            .page(categoriesListResponseDto.getUrl())
+                            .page(categoriesListResponseDto.getPage())
                             .tag(categoriesListResponseDto.getTag())
                             .year(year)
                             .month(month)

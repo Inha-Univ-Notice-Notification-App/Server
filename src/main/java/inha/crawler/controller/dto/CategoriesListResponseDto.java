@@ -12,11 +12,12 @@ public class CategoriesListResponseDto {
     private String url;
     private String noticeUrl;
 
+
     public CategoriesListResponseDto(Categories entity) {
         this.id = entity.getId();
         this.page = entity.getPage();
         this.tag = entity.getTag();
         this.url = entity.getUrl();
-        this.noticeUrl = entity.getNoticeUrl();
+
     }
 }
