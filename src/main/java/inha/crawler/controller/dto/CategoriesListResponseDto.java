@@ -18,6 +18,6 @@ public class CategoriesListResponseDto {
         this.page = entity.getPage();
         this.tag = entity.getTag();
         this.url = entity.getUrl();
-
+        this.noticeUrl = entity.getNoticeUrl();
     }
 }

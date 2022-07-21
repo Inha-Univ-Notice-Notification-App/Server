@@ -1,0 +1,32 @@
+{{>layout/header}}
+
+<table class="table table-horizontal table-bordered">
+    <thead class="thead-strong">
+    <tr>
+        <th>id</th>
+        <th>공지 제목</th>
+        <th>공지가 올라온 페이지</th>
+        <th>공지가 올라온 게시판</th>
+        <th>공지의 url 주소</th>
+        <th>year</th>
+        <th>month</th>
+        <th>day</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    {{#notices}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{title}}</td>
+            <td>{{page}}</td>
+            <td>{{tag}}</td>
+            <td><a href={{url}}>{{url}}</a> </td>
+            <td>{{year}}</td>
+            <td>{{month}}</td>
+            <td>{{day}}</td>
+        </tr>
+    {{/notices}}
+    </tbody>
+</table>
+
+{{>layout/footer}}
