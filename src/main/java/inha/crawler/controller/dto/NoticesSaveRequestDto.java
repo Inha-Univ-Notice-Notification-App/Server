@@ -30,9 +30,10 @@ public class NoticesSaveRequestDto {
 
     //@NotBlank(message = "공지가 올라온 날짜가 입력되지 않았습니다")
     private int day;
+    private boolean star;
 
     @Builder
-    public NoticesSaveRequestDto(String title, String page, String tag, String url, int year, int month, int day) {
+    public NoticesSaveRequestDto(String title, String page, String tag, String url, int year, int month, int day, boolean star) {
         this.title = title;
         this.page = page;
         this.tag = tag;
@@ -40,6 +41,7 @@ public class NoticesSaveRequestDto {
         this.year = year;
         this.month = month;
         this.day = day;
+        this.star = star;
     }
 
     public Notices toEntity() {
@@ -51,6 +53,7 @@ public class NoticesSaveRequestDto {
                 .year(year)
                 .month(month)
                 .day(day)
+                .star(star)
                 .build();
     }
 }

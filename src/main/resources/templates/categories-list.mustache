@@ -1,0 +1,24 @@
+{{>layout/header}}
+
+<table class="table table-horizontal table-bordered">
+    <thead class="thead-strong">
+    <tr>
+        <th>크롤링 대상 페이지 이름</th>
+        <th>게시판 이름</th>
+        <th>게시판 url</th>
+        <th>공지 공통 url</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    {{#categories}}
+        <tr>
+            <td>{{page}}</td>
+            <td>{{tag}}</td>
+            <td><a href={{url}}>{{url}}</a> </td>
+            <td>{{noticeUrl}}</td>
+        </tr>
+    {{/categories}}
+    </tbody>
+</table>
+
+{{>layout/footer}}
