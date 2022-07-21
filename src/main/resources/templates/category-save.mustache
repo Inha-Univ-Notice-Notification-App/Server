@@ -1,0 +1,27 @@
+{{>layout/header}}
+
+<div class = "container">
+    <form action="/category/new" method="post">
+        <div class="form-group">
+            <p>
+                <label for="page">페이지</label>
+                <input type="text" id="page" name="page" placeholder="페이지 전체 이름을 입력해주세요. (ex. 인하대학교 or xx학과">
+            </p>
+            <p>
+                <label for="tag">게시판</label>
+                <input type="text" id="tag" name="tag" placeholder="게시판 전체 이름을 입력해주세요. (ex. 학부 공지 or 장학)">
+            </p>
+            <p>
+                <label for="url">url</label>
+                <input type="text" id="url" name="url" placeholder="게시판의 url을 입력해주세요.">
+            </p>
+            <p>
+                <label for="noticeUrl">공지 공통 url</label>
+                <input type="text" id="noticeUrl" name="noticeUrl" placeholder="공지 페이지의 공통 url을 입력해주세요.">
+            </p>
+        </div>
+        <button type="submit">등록</button>
+    </form>
+</div>
+
+{{>layout/footer}}
