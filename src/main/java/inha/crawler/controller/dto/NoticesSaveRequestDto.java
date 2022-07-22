@@ -33,7 +33,7 @@ public class NoticesSaveRequestDto {
     private boolean star;
 
     @Builder
-    public NoticesSaveRequestDto(String title, String page, String tag, String url, int year, int month, int day, boolean star) {
+    public NoticesSaveRequestDto(String title, String page, String tag, String url, int year, int month, int day) {
         this.title = title;
         this.page = page;
         this.tag = tag;
@@ -41,7 +41,6 @@ public class NoticesSaveRequestDto {
         this.year = year;
         this.month = month;
         this.day = day;
-        this.star = star;
     }
 
     public Notices toEntity() {
@@ -53,7 +52,6 @@ public class NoticesSaveRequestDto {
                 .year(year)
                 .month(month)
                 .day(day)
-                .star(star)
                 .build();
     }
 }

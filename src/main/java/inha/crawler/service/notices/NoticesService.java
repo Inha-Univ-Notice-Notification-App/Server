@@ -56,7 +56,6 @@ public class NoticesService {
                             .year(year)
                             .month(month)
                             .day(day)
-                            .star(false)
                             .build();
 
                     noticesRepository.save(noticesSaveRequestDto.toEntity());

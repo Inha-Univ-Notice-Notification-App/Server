@@ -35,11 +35,9 @@ public class Notices {
     private int month;
     private int day;
 
-    // 즐겨찾기 여부
-    private boolean star;
 
     @Builder
-    public Notices(String title, String page, String tag, String url, int year, int month, int day, boolean star){
+    public Notices(String title, String page, String tag, String url, int year, int month, int day){
         this.title = title;
         this.page = page;
         this.tag = tag;
@@ -47,12 +45,8 @@ public class Notices {
         this.year = year;
         this.month = month;
         this.day = day;
-        this.star = star;
     }
 
-    // 즐겨찾기 여부 변경
-    public void changeStar(){
-        this.star = !this.star;
-    }
+
 
 }
