@@ -12,6 +12,6 @@ public class NoticesServiceTest {
     NoticesService noticesService;
     @Test
     public void 공지목록업데이트(){
-        noticesService.updateNoticesList();
+        //noticesService.updateNoticesList();
     }
 }
