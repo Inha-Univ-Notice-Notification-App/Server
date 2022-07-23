@@ -34,7 +34,7 @@ public class NoticesService {
             try {
                 Document document = conn.get();
 
-                List<String> items = document.getElementsByAttributeValue("class", "artclTable artclHorNum1").select("a").eachText();
+                List<String> items = document.getElementsByAttributeValue("class", "artclTable artclHorNum1").select("strong").eachText();
                 List<String> dates = document.select("._artclTdRdate").eachText();
                 List<String> links = document.getElementsByAttributeValue("class", "artclTable artclHorNum1").select("a").eachAttr("href");
 
