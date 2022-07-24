@@ -45,20 +45,21 @@ public class NoticesService {
                     int month = Integer.parseInt(yearMonthDay[1]);
                     int day = Integer.parseInt(yearMonthDay[2]);
 
-                    System.out.println(yearMonthDay.length);
-                    System.out.println(Integer.parseInt(yearMonthDay[2]));
+                    List<NoticesListResponseDto> duplicationCheck = noticesRepository.duplicationCheck(items.get(i), categoriesListResponseDto.getPage(), categoriesListResponseDto.getTag());
+                    System.out.println(duplicationCheck.size());
+                    if (duplicationCheck.size() == 0) {
+                        NoticesSaveRequestDto noticesSaveRequestDto = NoticesSaveRequestDto.builder()
+                                .title(items.get(i))
+                                .url(categoriesListResponseDto.getNoticeUrl() + links.get(i))
+                                .page(categoriesListResponseDto.getPage())
+                                .tag(categoriesListResponseDto.getTag())
+                                .year(year)
+                                .month(month)
+                                .day(day)
+                                .build();
 
-                    NoticesSaveRequestDto noticesSaveRequestDto = NoticesSaveRequestDto.builder()
-                            .title(items.get(i))
-                            .url(categoriesListResponseDto.getNoticeUrl() + links.get(i))
-                            .page(categoriesListResponseDto.getPage())
-                            .tag(categoriesListResponseDto.getTag())
-                            .year(year)
-                            .month(month)
-                            .day(day)
-                            .build();
-
-                    noticesRepository.save(noticesSaveRequestDto.toEntity());
+                        noticesRepository.save(noticesSaveRequestDto.toEntity());
+                    }
                 }
             } catch (IOException e1) {
                 System.out.println("getNoticesList()에서 오류가 발생했습니다.");
