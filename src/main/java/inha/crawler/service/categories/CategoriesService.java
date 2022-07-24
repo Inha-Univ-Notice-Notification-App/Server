@@ -17,8 +17,11 @@ public class CategoriesService {
     private final CategoriesRepository categoriesRepository;
 
     @Transactional
-    public Long save(CategoriesSaveRequestDto requestDto) {
-        return categoriesRepository.save(requestDto.toEntity()).getId();
+    public void save(CategoriesSaveRequestDto requestDto) {
+        List<CategoriesListResponseDto> duplicationCheck = categoriesRepository.duplicationCheck(requestDto.getPage(), requestDto.getTag());
+        if (duplicationCheck.size() == 0) {
+            categoriesRepository.save(requestDto.toEntity()).getId();
+        }
     }
 
     @Transactional(readOnly = true)

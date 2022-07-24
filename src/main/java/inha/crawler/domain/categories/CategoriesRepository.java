@@ -1,12 +1,13 @@
 package inha.crawler.domain.categories;
 
+import inha.crawler.controller.dto.CategoriesListResponseDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface CategoriesRepository extends JpaRepository<Categories,Long> {
-//    boolean existsByPage(String title);
-//    boolean existsByTag(String title);
+import java.util.List;
 
-//    @Query("delete from Categories where id NOT IN (SELECT * from (SELECT MIN(id) FROM Categories GROUP BY page,tag,url,noticeUrl) AS tempTable)")
-//    void delete();
+public interface CategoriesRepository extends JpaRepository<Categories,Long> {
+
+    @Query(value = "SELECT c FROM Categories c WHERE page=?1 AND tag=?2")
+    List<CategoriesListResponseDto> duplicationCheck(String page, String tag);
 }
