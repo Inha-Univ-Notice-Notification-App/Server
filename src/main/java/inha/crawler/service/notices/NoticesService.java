@@ -30,9 +30,8 @@ public class NoticesService {
 
         for(CategoriesListResponseDto categoriesListResponseDto : categoriesList){
             final String url = categoriesListResponseDto.getUrl();
-            Connection conn = Jsoup.connect(url);
 
-            if (url.equals("https://www.inha.ac.kr/bbs/kr/8/artclList.do")) {
+            if (categoriesListResponseDto.getNoticeUrl().equals("https://www.inha.ac.kr")) {
                 updateNoticesList_School(url, categoriesListResponseDto.getPage(), categoriesListResponseDto.getTag(), categoriesListResponseDto.getNoticeUrl());
             }
             else {

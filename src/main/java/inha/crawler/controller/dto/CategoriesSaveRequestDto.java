@@ -2,9 +2,12 @@ package inha.crawler.controller.dto;
 
 import inha.crawler.domain.categories.Categories;
 import lombok.Builder;
+import lombok.Getter;
 
 //import javax.validation.constraints.NotBlank;
 
+
+@Getter
 public class CategoriesSaveRequestDto {
     //@NotBlank(message = "페이지를 입력해주세요")
     private String page;
