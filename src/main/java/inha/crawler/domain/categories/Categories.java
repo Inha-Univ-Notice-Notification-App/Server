@@ -24,7 +24,6 @@ public class Categories {
 
     @Builder
     public Categories(String page, String tag, String url, String noticeUrl){
-
         this.page = page;
         this.tag = tag;
         this.url = url;

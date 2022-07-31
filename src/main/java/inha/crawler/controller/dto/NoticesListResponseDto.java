@@ -15,6 +15,7 @@ public class NoticesListResponseDto {
     private int year;
     private int month;
     private int day;
+    private int heart;
 
     public NoticesListResponseDto(Notices entity) {
         this.id = entity.getId();
@@ -25,5 +26,6 @@ public class NoticesListResponseDto {
         this.year = entity.getYear();
         this.month = entity.getMonth();
         this.day = entity.getDay();
+        this.heart = entity.getHeart();
     }
 }

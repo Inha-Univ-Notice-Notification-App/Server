@@ -3,6 +3,7 @@ package inha.crawler.service.notices;
 import inha.crawler.controller.dto.CategoriesListResponseDto;
 import inha.crawler.controller.dto.NoticesListResponseDto;
 import inha.crawler.controller.dto.NoticesSaveRequestDto;
+import inha.crawler.domain.notices.Notices;
 import inha.crawler.domain.notices.NoticesRepository;
 import inha.crawler.service.categories.CategoriesService;
 import lombok.RequiredArgsConstructor;
@@ -127,6 +128,18 @@ public class NoticesService {
         return noticesRepository.findAll().stream()
                 .map(NoticesListResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void heartPlus(Long noticeId){
+        Notices notice = noticesRepository.findById(noticeId).orElseThrow(() -> new IllegalArgumentException("해당 id의 공지가 없습니다. id="+noticeId));
+        notice.noticeHeartPlus();
+    }
+
+    @Transactional
+    public void heartMinus(Long noticeId){
+        Notices notice = noticesRepository.findById(noticeId).orElseThrow(() -> new IllegalArgumentException("해당 id의 공지가 없습니다. id="+noticeId));
+        notice.noticeHeartMinus();
     }
 
 }
