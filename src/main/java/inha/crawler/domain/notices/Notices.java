@@ -1,6 +1,7 @@
 package inha.crawler.domain.notices;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,8 +9,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 public class Notices {
     // PK 값
     @Id
@@ -35,6 +38,10 @@ public class Notices {
     private int month;
     private int day;
 
+    // 공지 즐겨찾기 개수
+    @Builder.Default
+    private int heart = 0;
+
 
     @Builder
     public Notices(String title, String page, String tag, String url, int year, int month, int day){
@@ -47,6 +54,15 @@ public class Notices {
         this.day = day;
     }
 
+    public void noticeHeartPlus(){
+        this.heart += 1;
+    }
 
+    public void noticeHeartMinus(){
+        if(this.heart == 0){
+            return;
+        }
+        this.heart -= 1;
+    }
 
 }

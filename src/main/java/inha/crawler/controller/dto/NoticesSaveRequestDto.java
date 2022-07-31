@@ -1,6 +1,7 @@
 package inha.crawler.controller.dto;
 
 import inha.crawler.domain.notices.Notices;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,9 @@ import lombok.NoArgsConstructor;
 //import javax.validation.constraints.NotBlank;
 
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class NoticesSaveRequestDto {
     //@NotBlank(message = "제목이 없습니다")
     private String title;
@@ -30,7 +33,9 @@ public class NoticesSaveRequestDto {
 
     //@NotBlank(message = "공지가 올라온 날짜가 입력되지 않았습니다")
     private int day;
-    private boolean star;
+
+    @Builder.Default
+    private int heart = 0;
 
     @Builder
     public NoticesSaveRequestDto(String title, String page, String tag, String url, int year, int month, int day) {
