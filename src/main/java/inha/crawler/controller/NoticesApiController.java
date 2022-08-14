@@ -43,17 +43,10 @@ public class NoticesApiController {
     }
 
     @GetMapping("/api/notices/heart/minus/{id}")
-    public String noticesHeartMinus(@PathVariable("id") Long noticeId, HttpServletResponse response){
-        noticesService.heartMinus(noticeId);
-        try {
-            response.setContentType("text/html; charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('해당 공지에 즐겨찾기 개수를 -1 했습니다'); history.go(-1);</script>");
-            out.flush();
-        } catch (IOException e){
-            System.out.println("noticesHeartMinus 함수의 getWriter 부분에서 오류 발생");
-        }
-        return "redirect:/";
+    public ResponseEntity<Notices> noticesHeartMinus(@PathVariable("id") Long noticeId, HttpServletResponse response){
+        HttpHeaders header = new HttpHeaders();
+        header.setContentType(new MediaType("application","json", Charset.forName("UTF-8")));
+        return new ResponseEntity<Notices>(noticesService.heartMinus(noticeId),header,HttpStatus.OK);
     }
 
 }
