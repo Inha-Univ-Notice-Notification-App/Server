@@ -131,9 +131,10 @@ public class NoticesService {
     }
 
     @Transactional
-    public void heartPlus(Long noticeId){
+    public Notices heartPlus(Long noticeId){
         Notices notice = noticesRepository.findById(noticeId).orElseThrow(() -> new IllegalArgumentException("해당 id의 공지가 없습니다. id="+noticeId));
         notice.noticeHeartPlus();
+        return notice;
     }
 
     @Transactional
