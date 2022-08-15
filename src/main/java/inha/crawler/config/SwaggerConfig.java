@@ -19,13 +19,13 @@ public class SwaggerConfig {
                 .groupName("오늘의 인하")
                 .apiInfo(apiInfo())
                 .select()
-                .paths(PathSelectors.ant("/api/**"))
+                .paths(PathSelectors.ant("/api/notices/**"))
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("오늘의 인하")
-                .description("오늘의 인하 서버 API 문서")
+                .description("오늘의 인하 서버 공지 관련 API 문서")
                 .build();
     }
 }
