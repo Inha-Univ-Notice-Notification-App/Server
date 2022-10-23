@@ -32,7 +32,7 @@ public class NoticesService {
         for(CategoriesListResponseDto categoriesListResponseDto : categoriesList){
             final String url = categoriesListResponseDto.getUrl();
 
-            if (categoriesListResponseDto.getNoticeUrl().equals("https://www.inha.ac.kr")) {
+            if (categoriesListResponseDto.isSchoolCategory()) {
                 updateNoticesList_School(url, categoriesListResponseDto.getPage(), categoriesListResponseDto.getTag(), categoriesListResponseDto.getNoticeUrl());
             }
             else {
@@ -41,33 +41,33 @@ public class NoticesService {
 
         }
     }
-
+    
 
     @Transactional // 학교 홈페이지 크롤링
     public void updateNoticesList_School(String url, String page, String tag, String noticeUrl){
-        Connection conn = Jsoup.connect(url);
-        String attributeValue = "artclLinkView";
+        Connection conn = connectToWebsite(url);
+        String attributeValue = "artclLinkView"; // 다른 부분
 
         try {
             Document document = conn.get();
 
-            List<String> items = document.getElementsByAttributeValue("class", attributeValue).eachText();
-            List<String> dates = document.select("._artclTdRdate").eachText();
-            List<String> links = document.getElementsByAttributeValue("class", attributeValue).select("a").eachAttr("href");
+            List<String> titles = getTitlesFromSchoolPage(document); // 다른 부분
+            List<String> dates = getDates(document);
+            List<String> links = getLinksFromSchoolPage(document);
 
 
-            for(int i = 0; i < items.size(); i++) {
+            for(int i = 0; i < titles.size(); i++) {
                 String[] yearMonthDay = dates.get(i).split("\\.");
 
                 int year = Integer.parseInt(yearMonthDay[0]);
                 int month = Integer.parseInt(yearMonthDay[1]);
                 int day = Integer.parseInt(yearMonthDay[2]);
 
-                List<NoticesListResponseDto> duplicationCheck = noticesRepository.duplicationCheck(items.get(i), page, tag);
+                List<NoticesListResponseDto> duplicationCheck = noticesRepository.duplicationCheck(titles.get(i), page, tag);
 
                 if (duplicationCheck.size() == 0) {
                     NoticesSaveRequestDto noticesSaveRequestDto = NoticesSaveRequestDto.builder()
-                            .title(items.get(i))
+                            .title(titles.get(i))
                             .url(noticeUrl + links.get(i))
                             .page(page)
                             .tag(tag)
@@ -81,6 +81,23 @@ public class NoticesService {
         } catch (IOException e1) {
             System.out.println("getNoticesList()에서 오류가 발생했습니다.");
         }
+    }
+
+    private List<String> getLinksFromSchoolPage(Document document) {
+        return document.getElementsByAttributeValue("class", "artclLinkView").select("a").eachAttr("href");
+    }
+
+    private List<String> getDates(Document document) {
+        return document.select("._artclTdRdate").eachText();
+    }
+
+    private List<String> getTitlesFromSchoolPage(Document document) {
+        return document.getElementsByAttributeValue("class", "artclLinkView").eachText();
+    }
+
+    private Connection connectToWebsite(String url) {
+        Connection conn = Jsoup.connect(url);
+        return conn;
     }
 
     @Transactional //학과 홈페이지 크롤링

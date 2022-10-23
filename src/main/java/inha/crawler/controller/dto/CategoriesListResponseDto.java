@@ -1,7 +1,6 @@
 package inha.crawler.controller.dto;
 
 import inha.crawler.domain.categories.Categories;
-import lombok.Builder;
 import lombok.Getter;
 
 @Getter
@@ -19,5 +18,9 @@ public class CategoriesListResponseDto {
         this.tag = entity.getTag();
         this.url = entity.getUrl();
         this.noticeUrl = entity.getNoticeUrl();
+    }
+
+    public boolean isSchoolCategory() {
+        return this.getNoticeUrl().equals("https://www.inha.ac.kr");
     }
 }
